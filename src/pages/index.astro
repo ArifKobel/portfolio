@@ -1,17 +1,232 @@
 ---
+import "../styles/global.css";
 
+const projekte = [
+	{
+		nr: "01",
+		name: "Bulkbox",
+		text: "Extrahiert Dropbox-Links aus Textwüsten und sortiert sie automatisch in Ordner.",
+		tags: "Next.js, Dropbox API",
+		url: "https://bulkbox.kobel.click/",
+		bild: "projekt-bulkbox",
+	},
+	{
+		nr: "02",
+		name: "F*CK .SPASS",
+		text: "Befreit Passwörter aus Samsung-Pass-Exporten und wandelt sie in offene Formate.",
+		tags: "TypeScript, Crypto",
+		url: "https://fck-spass.kobel.click/",
+		bild: "projekt-spass",
+	},
+	{
+		nr: "03",
+		name: "YT AdBlock Remover",
+		text: "Browser-Extension, die YouTubes Adblock-Warnungen verschwinden lässt.",
+		tags: "JavaScript",
+		url: "https://github.com/ArifKobel/youtube-adwarning-remove",
+		bild: "projekt-adblock",
+	},
+	{
+		nr: "04",
+		name: "EcoSchool",
+		text: "Umwelt-Quiz und Schulverwaltung in einem System.",
+		tags: "Laravel 12, Filament",
+		url: "https://ecoschool.develop.kobel.click/",
+		bild: "projekt-ecoschool",
+	},
+	{
+		nr: "05",
+		name: "xTranslate",
+		text: "Übersetzt XLIFF-Dateien automatisch, damit es niemand von Hand tun muss.",
+		tags: "TypeScript, GPT",
+		url: "https://github.com/ArifKobel/xtranslate",
+		bild: "projekt-xtranslate",
+	},
+];
+
+const skills = [
+	{ was: "Sprachen", liste: "JavaScript, TypeScript, PHP, Golang" },
+	{ was: "Frameworks", liste: "React, Next.js, Express, Laravel, TYPO3, Tailwind" },
+	{ was: "Werkzeug", liste: "Git, Docker, n8n, Claude Code, Cursor, VS Code" },
+];
 ---
 
-<html lang="en">
+<html lang="de">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
+		<link
+			rel="preload"
+			href="/fonts/CabinetGrotesk-Variable.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin
+		/>
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<meta
+			name="description"
+			content="Arif Kobel, Software Engineer aus Hamburg. Ich baue Dinge fürs Web."
+		/>
+		<title>Arif Kobel, Software Engineer aus Hamburg</title>
 	</head>
-	<body>
-		<h1>Astro</h1>
+	<body class="antialiased">
+		<header class="absolute inset-x-0 top-0 z-40 flex items-baseline justify-between px-6 py-5 sm:px-10">
+			<a href="/" class="text-lg font-bold">Arif Kobel</a>
+			<nav class="flex gap-6 text-base font-medium">
+				<a href="#projekte" class="hover:text-kran">Projekte</a>
+				<a href="#ueber" class="hover:text-kran">Über</a>
+				<a href="#kontakt" class="hover:text-kran">Kontakt</a>
+			</nav>
+		</header>
+
+		<section class="relative overflow-clip pb-28">
+			<div class="mx-auto max-w-6xl px-6 pt-[12svh] sm:px-10" data-depth="-5">
+				<h1 class="text-[clamp(5.5rem,17vw,14rem)] leading-[0.95] font-extrabold tracking-tight">
+					Moin<span class="text-kran">.</span>
+				</h1>
+				<p class="mt-8 max-w-xl text-xl leading-snug font-medium sm:text-2xl">
+					Ich bin Arif Kobel, Software Engineer aus Hamburg. Ich baue Dinge
+					fürs Web, von der Datenbank bis zum Interface.
+				</p>
+			</div>
+
+			<div class="relative mx-auto mt-14 max-w-6xl px-6 sm:px-10">
+				<figure class="ml-auto w-full sm:w-[72%]" data-depth="9">
+					<img
+						src="/hafen/pano.jpg"
+						alt="Containerkräne im Hamburger Hafen im Morgennebel"
+						width="1584"
+						height="672"
+						class="aspect-[21/9] w-full object-cover"
+					/>
+				</figure>
+				<figure
+					class="absolute -bottom-14 left-6 w-44 sm:left-[14%] sm:w-64"
+					data-depth="20"
+				>
+					<img
+						src="/hafen/elphi.jpg"
+						alt="Die Elbphilharmonie von der Elbe aus"
+						width="896"
+						height="1200"
+						class="aspect-[3/4] w-full object-cover"
+					/>
+				</figure>
+			</div>
+		</section>
+
+		<script>
+			const els = document.querySelectorAll<HTMLElement>("[data-depth]");
+			if (matchMedia("(pointer: fine) and (prefers-reduced-motion: no-preference)").matches) {
+				addEventListener("mousemove", (e) => {
+					const nx = e.clientX / innerWidth - 0.5;
+					const ny = e.clientY / innerHeight - 0.5;
+					for (const el of els) {
+						const d = Number(el.dataset.depth);
+						el.style.transform = `translate3d(${nx * d}px, ${ny * d}px, 0)`;
+					}
+				});
+			}
+		</script>
+
+		<main>
+			<section id="projekte" class="mx-auto max-w-6xl px-6 py-28 sm:px-10">
+				<h2 class="text-5xl font-extrabold tracking-tight sm:text-6xl">Projekte</h2>
+				<ol class="mt-14">
+					{
+						projekte.map((p) => (
+							<li class="border-t border-ink/15">
+								<a
+									href={p.url}
+									class="group relative -mx-4 grid grid-cols-[3rem_1fr] gap-x-4 gap-y-2 px-4 py-9 transition-colors duration-300 hover:bg-ink sm:-mx-6 sm:grid-cols-[4rem_1fr_16rem] sm:px-6"
+								>
+									<span class="pt-2 text-lg font-semibold text-ink/40 transition-colors duration-300 group-hover:text-paper/40">
+										{p.nr}
+									</span>
+									<div>
+										<h3 class="text-3xl font-bold tracking-tight transition-colors duration-300 group-hover:text-paper sm:text-4xl">
+											{p.name}
+										</h3>
+										<p class="mt-2 max-w-lg text-lg text-ink/70 transition-colors duration-300 group-hover:text-paper/70">
+											{p.text}
+										</p>
+									</div>
+									<span class="col-start-2 text-base font-medium text-ink/50 transition duration-300 group-hover:opacity-0 sm:col-start-3 sm:pt-3 sm:text-right">
+										{p.tags}
+									</span>
+									<img
+										src={`/hafen/${p.bild}.jpg`}
+										alt=""
+										width="960"
+										height="717"
+										loading="lazy"
+										class="pointer-events-none absolute top-1/2 right-10 hidden w-48 -translate-y-1/2 -rotate-6 scale-90 opacity-0 transition-all duration-300 group-hover:rotate-2 group-hover:scale-100 group-hover:opacity-100 sm:block"
+									/>
+								</a>
+							</li>
+						))
+					}
+				</ol>
+			</section>
+
+			<section id="ueber" class="mx-auto max-w-6xl px-6 py-28 sm:px-10">
+				<div class="grid gap-10 sm:grid-cols-[1fr_2fr]">
+					<h2 class="text-5xl font-extrabold tracking-tight sm:text-6xl">Über</h2>
+					<div class="max-w-2xl text-xl leading-relaxed sm:text-2xl">
+						<p>
+							Ich baue Sachen, die funktionieren. Skalierbare Anwendungen über
+							den ganzen Stack, von der Datenbank bis zum Interface. Am
+							liebsten Werkzeuge, die echte Probleme lösen: Browser-Extensions,
+							kleine Helfer, komplette Web-Apps.
+						</p>
+						<dl class="mt-12">
+							{
+								skills.map((s) => (
+									<div class="grid grid-cols-[8rem_1fr] gap-4 border-t border-ink/15 py-4 text-lg sm:text-xl">
+										<dt class="font-semibold">{s.was}</dt>
+										<dd class="text-ink/70">{s.liste}</dd>
+									</div>
+								))
+							}
+						</dl>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer id="kontakt" class="text-paper">
+			<div class="h-8 overflow-hidden" aria-hidden="true">
+				<svg class="wave-strip h-8 w-[200%]" viewBox="0 0 1440 32" preserveAspectRatio="none">
+					<path
+						fill="var(--color-ink)"
+						d="M0 16 Q30 2 60 16 T120 16 T180 16 T240 16 T300 16 T360 16 T420 16 T480 16 T540 16 T600 16 T660 16 T720 16 T780 16 T840 16 T900 16 T960 16 T1020 16 T1080 16 T1140 16 T1200 16 T1260 16 T1320 16 T1380 16 T1440 16 V32 H0 Z"
+					></path>
+					<path
+						fill="none"
+						stroke="var(--color-kran)"
+						stroke-width="3"
+						d="M0 16 Q30 2 60 16 T120 16 T180 16 T240 16 T300 16 T360 16 T420 16 T480 16 T540 16 T600 16 T660 16 T720 16 T780 16 T840 16 T900 16 T960 16 T1020 16 T1080 16 T1140 16 T1200 16 T1260 16 T1320 16 T1380 16 T1440 16"
+					></path>
+				</svg>
+			</div>
+			<div class="bg-ink">
+			<div class="mx-auto max-w-6xl px-6 pt-20 pb-10 sm:px-10">
+				<p class="text-xl font-medium text-paper/70">Lust, was zusammen zu bauen?</p>
+				<a
+					href="mailto:arif@kobel.click"
+					class="mt-4 inline-block text-[clamp(1.8rem,6.5vw,5rem)] font-extrabold tracking-tight break-all transition-colors hover:text-kran"
+				>
+					arif@kobel.click
+				</a>
+				<div class="mt-20 flex flex-wrap items-baseline justify-between gap-4 border-t border-paper/20 pt-6 text-base text-paper/60">
+					<span>Arif Kobel, Hamburg</span>
+					<a href="https://github.com/ArifKobel" class="font-medium text-paper hover:text-kran">
+						GitHub
+					</a>
+				</div>
+			</div>
+			</div>
+		</footer>
 	</body>
 </html>
