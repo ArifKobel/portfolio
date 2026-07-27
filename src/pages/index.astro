@@ -44,6 +44,21 @@ const projekte = [
 	},
 ];
 
+const stationen = [
+	{
+		zeit: "2023 – 2026",
+		rolle: "Ausbildung Fachinformatiker",
+		firma: "Digitalagentur, Hamburg",
+		text: "Schwerpunkt Anwendungsentwicklung. Vom ersten Commit bis zum Kundenprojekt.",
+	},
+	{
+		zeit: "2026 – heute",
+		rolle: "Web Engineer",
+		firma: "Digitalagentur, Hamburg",
+		text: "Direkt nach der Ausbildung übernommen. Web-Anwendungen über den ganzen Stack.",
+	},
+];
+
 const skills = [
 	{ was: "Sprachen", liste: "JavaScript, TypeScript, PHP, Golang" },
 	{ was: "Frameworks", liste: "React, Next.js, Express, Laravel, TYPO3, Tailwind" },
@@ -76,6 +91,7 @@ const skills = [
 			<nav class="flex gap-6 text-base font-medium">
 				<a href="#projekte" class="hover:text-kran">Projekte</a>
 				<a href="#ueber" class="hover:text-kran">Über</a>
+				<a href="#werdegang" class="hover:text-kran">Werdegang</a>
 				<a href="#kontakt" class="hover:text-kran">Kontakt</a>
 			</nav>
 		</header>
@@ -219,24 +235,61 @@ const skills = [
 					</div>
 				</div>
 			</section>
+
+			<div class="paper-sheet-wrap relative z-10 mt-6">
+			<section id="werdegang" class="paper-sheet">
+			<div class="mx-auto max-w-6xl px-6 py-24 sm:px-10">
+				<h2 class="text-5xl font-extrabold tracking-tight sm:text-6xl">
+					<span class="paper-schnipsel -rotate-1">Werdegang</span>
+				</h2>
+				<ol class="relative mt-14 max-w-3xl">
+					{
+						stationen.map((s, i) => (
+							<li class="relative pb-14 pl-16 sm:pl-20">
+								<span
+									class="absolute top-12 bottom-1 left-5 -ml-px border-l-2 border-dashed border-ink/25"
+									aria-hidden="true"
+								></span>
+								<span
+									class={`absolute top-0 left-0 grid h-10 w-10 place-items-center bg-kran text-base font-bold text-paper shadow-sm ${i % 2 ? "rotate-3" : "-rotate-2"}`}
+								>
+									{String(i + 1).padStart(2, "0")}
+								</span>
+								<span
+									class={`paper-chip inline-block text-sm font-semibold whitespace-nowrap text-ink/70 ${i % 2 ? "rotate-1" : "-rotate-1"}`}
+								>
+									{s.zeit}
+								</span>
+								<h3 class="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">{s.rolle}</h3>
+								<p class="mt-1 text-lg font-medium text-ink/60">{s.firma}</p>
+								{s.text && <p class="mt-2 max-w-lg text-lg text-ink/70">{s.text}</p>}
+							</li>
+						))
+					}
+					<li class="relative pb-16 pl-16 sm:pl-20">
+						<span
+							class="absolute top-0 left-0 grid h-10 w-10 rotate-2 place-items-center border-2 border-dashed border-kran text-kran"
+						>
+							<svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+								<path d="M12 4v14m0 0l-5-5m5 5l5-5"></path>
+							</svg>
+						</span>
+						<span
+							class="absolute top-12 left-5 -ml-px h-14 w-0.5"
+							style="background-image: repeating-linear-gradient(to bottom, var(--color-kran) 0 6px, transparent 6px 12px); mask-image: linear-gradient(to bottom, black, transparent); -webkit-mask-image: linear-gradient(to bottom, black, transparent);"
+							aria-hidden="true"
+						></span>
+						<h3 class="pt-1 text-2xl font-bold tracking-tight sm:text-3xl">Weiter auf Kurs</h3>
+						<p class="mt-2 max-w-lg text-lg text-ink/70">Das Logbuch wird fortgeschrieben.</p>
+					</li>
+				</ol>
+			</div>
+			</section>
+			</div>
 		</main>
 
-		<footer id="kontakt" class="text-paper">
-			<div class="h-8 overflow-hidden" aria-hidden="true">
-				<svg class="wave-strip h-8 w-[200%]" viewBox="0 0 1440 32" preserveAspectRatio="none">
-					<path
-						fill="var(--color-ink)"
-						d="M0 16 Q30 2 60 16 T120 16 T180 16 T240 16 T300 16 T360 16 T420 16 T480 16 T540 16 T600 16 T660 16 T720 16 T780 16 T840 16 T900 16 T960 16 T1020 16 T1080 16 T1140 16 T1200 16 T1260 16 T1320 16 T1380 16 T1440 16 V32 H0 Z"
-					></path>
-					<path
-						fill="none"
-						stroke="var(--color-kran)"
-						stroke-width="3"
-						d="M0 16 Q30 2 60 16 T120 16 T180 16 T240 16 T300 16 T360 16 T420 16 T480 16 T540 16 T600 16 T660 16 T720 16 T780 16 T840 16 T900 16 T960 16 T1020 16 T1080 16 T1140 16 T1200 16 T1260 16 T1320 16 T1380 16 T1440 16"
-					></path>
-				</svg>
-			</div>
-			<div class="bg-ink">
+		<footer id="kontakt" class="relative z-0 text-paper">
+			<div class="-mt-4 bg-ink pt-4">
 			<div class="mx-auto max-w-6xl px-6 pt-20 pb-10 sm:px-10">
 				<p class="text-xl font-medium text-paper/70">Lust, was zusammen zu bauen?</p>
 				<a

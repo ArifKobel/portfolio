@@ -100,19 +100,3 @@ body {
   transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
   will-change: transform;
 }
-
-@keyframes wave-drift {
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.wave-strip {
-  animation: wave-drift 14s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .wave-strip {
-    animation: none;
-  }
-}
