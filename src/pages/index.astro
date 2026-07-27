@@ -92,22 +92,22 @@ const skills = [
 			</div>
 
 			<div class="relative mx-auto mt-14 max-w-6xl px-6 sm:px-10">
-				<figure class="ml-auto w-full sm:w-[72%]" data-depth="9">
+				<figure class="paper-foto ml-auto w-full overflow-hidden rotate-[0.4deg] sm:w-[72%]" data-depth="9">
 					<img
 						src="/hafen/pano.jpg"
-						alt="Containerkräne im Hamburger Hafen im Morgennebel"
-						width="1584"
-						height="672"
-						class="aspect-[21/9] w-full object-cover"
+						alt="Papier-Collage: Containerkräne und Schiff im Hamburger Hafen"
+						width="1393"
+						height="571"
+						class="aspect-[21/9] w-full scale-[1.02] object-cover"
 					/>
 				</figure>
 				<figure
-					class="absolute -bottom-14 left-6 w-44 sm:left-[14%] sm:w-64"
+					class="paper-foto absolute -bottom-14 left-6 w-44 -rotate-2 sm:left-[14%] sm:w-64"
 					data-depth="20"
 				>
 					<img
 						src="/hafen/elphi.jpg"
-						alt="Die Elbphilharmonie von der Elbe aus"
+						alt="Papier-Collage der Elbphilharmonie"
 						width="896"
 						height="1200"
 						class="aspect-[3/4] w-full object-cover"
@@ -131,18 +131,26 @@ const skills = [
 		</script>
 
 		<main>
-			<section id="projekte" class="mx-auto max-w-6xl px-6 py-28 sm:px-10">
-				<h2 class="text-5xl font-extrabold tracking-tight sm:text-6xl">Projekte</h2>
+			<div class="paper-sheet-wrap my-6">
+			<section id="projekte" class="paper-sheet">
+			<div class="mx-auto max-w-6xl px-6 py-24 sm:px-10">
+				<h2 class="text-5xl font-extrabold tracking-tight sm:text-6xl">
+					<span class="paper-schnipsel -rotate-1">Projekte</span>
+				</h2>
 				<ol class="mt-14">
 					{
-						projekte.map((p) => (
+						projekte.map((p, i) => (
 							<li class="border-t border-ink/15">
 								<a
 									href={p.url}
 									class="group relative -mx-4 grid grid-cols-[3rem_1fr] gap-x-4 gap-y-2 px-4 py-9 transition-colors duration-300 hover:bg-ink sm:-mx-6 sm:grid-cols-[4rem_1fr_16rem] sm:px-6"
 								>
-									<span class="pt-2 text-lg font-semibold text-ink/40 transition-colors duration-300 group-hover:text-paper/40">
-										{p.nr}
+									<span class="pt-1">
+										<span
+											class={`grid h-10 w-10 place-items-center bg-kran text-base font-bold text-paper shadow-sm ${i % 2 ? "rotate-3" : "-rotate-2"}`}
+										>
+											{p.nr}
+										</span>
 									</span>
 									<div>
 										<h3 class="text-3xl font-bold tracking-tight transition-colors duration-300 group-hover:text-paper sm:text-4xl">
@@ -152,8 +160,14 @@ const skills = [
 											{p.text}
 										</p>
 									</div>
-									<span class="col-start-2 text-base font-medium text-ink/50 transition duration-300 group-hover:opacity-0 sm:col-start-3 sm:pt-3 sm:text-right">
-										{p.tags}
+									<span class="col-start-2 flex flex-wrap content-start gap-2 transition duration-300 group-hover:opacity-0 sm:col-start-3 sm:justify-end sm:pt-3">
+										{p.tags.split(", ").map((t, j) => (
+											<span
+												class={`paper-chip text-sm font-medium text-ink/70 ${j % 2 ? "rotate-1" : "-rotate-1"}`}
+											>
+												{t}
+											</span>
+										))}
 									</span>
 									<img
 										src={`/hafen/${p.bild}.jpg`}
@@ -161,18 +175,22 @@ const skills = [
 										width="960"
 										height="717"
 										loading="lazy"
-										class="pointer-events-none absolute top-1/2 right-10 hidden w-48 -translate-y-1/2 -rotate-6 scale-90 opacity-0 transition-all duration-300 group-hover:rotate-2 group-hover:scale-100 group-hover:opacity-100 sm:block"
+										class="paper-foto pointer-events-none absolute top-1/2 right-10 hidden w-48 -translate-y-1/2 -rotate-6 scale-90 opacity-0 transition-all duration-300 group-hover:rotate-2 group-hover:scale-100 group-hover:opacity-100 sm:block"
 									/>
 								</a>
 							</li>
 						))
 					}
 				</ol>
+			</div>
 			</section>
+			</div>
 
 			<section id="ueber" class="mx-auto max-w-6xl px-6 py-28 sm:px-10">
 				<div class="grid gap-10 sm:grid-cols-[1fr_2fr]">
-					<h2 class="text-5xl font-extrabold tracking-tight sm:text-6xl">Über</h2>
+					<h2 class="text-5xl font-extrabold tracking-tight sm:text-6xl">
+						<span class="paper-schnipsel rotate-1">Über</span>
+					</h2>
 					<div class="max-w-2xl text-xl leading-relaxed sm:text-2xl">
 						<p>
 							Ich baue Sachen, die funktionieren. Skalierbare Anwendungen über
@@ -183,9 +201,17 @@ const skills = [
 						<dl class="mt-12">
 							{
 								skills.map((s) => (
-									<div class="grid grid-cols-[8rem_1fr] gap-4 border-t border-ink/15 py-4 text-lg sm:text-xl">
+									<div class="grid grid-cols-[8rem_1fr] gap-4 border-t border-ink/15 py-5 text-lg sm:text-xl">
 										<dt class="font-semibold">{s.was}</dt>
-										<dd class="text-ink/70">{s.liste}</dd>
+										<dd class="flex flex-wrap content-start gap-2">
+											{s.liste.split(", ").map((t, j) => (
+												<span
+													class={`paper-chip text-base text-ink/80 ${j % 2 ? "rotate-1" : "-rotate-1"}`}
+												>
+													{t}
+												</span>
+											))}
+										</dd>
 									</div>
 								))
 							}
